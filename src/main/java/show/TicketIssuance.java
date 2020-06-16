@@ -11,6 +11,7 @@ import org.springframework.cloud.stream.messaging.Processor;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHeaders;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.util.MimeTypeUtils;
 import show.config.kafka.KafkaProcessor;
 
@@ -25,20 +26,31 @@ public class TicketIssuance {
     private Long id;
     private String issueStatus;
     private Long bookId;
+    private String eventType;
+
+    public String getEventType() {
+        return eventType;
+    }
+
+    public void setEventType(String eventType) {
+        this.eventType = eventType;
+    }
+
+    public TicketIssuance() {
+        super();
+        this.eventType = this.getClass().getSimpleName();
+    }
 
     @Autowired
     TicketIssuanceRepository ticketIssuanceRepository;
 
-    @PostUpdate
-    public void issueTicket() {
-        TicketIssuance ticketIssuance = ticketIssuanceRepository.findByBookId(this.getBookId());
-        ticketIssuance.setIssueStatus("Issued");
-        ticketIssuanceRepository.save(ticketIssuance);
+    @PostPersist
+    public void onPostPersist() {
         ObjectMapper objectMapper = new ObjectMapper();
         String json = null;
 
         try {
-            json = objectMapper.writeValueAsString(ticketIssuance);
+            json = objectMapper.writeValueAsString(this);
         } catch (JsonProcessingException e) {
             throw new RuntimeException("JSON format exception", e);
         }
@@ -53,9 +65,15 @@ public class TicketIssuance {
     }
 
     @PostUpdate
-    public void cancelIssue() {
+    public void onPostUpdate() {
         TicketIssuance ticketIssuance = ticketIssuanceRepository.findByBookId(this.getBookId());
-        ticketIssuance.setIssueStatus("Canceled");
+
+        if (eventType == "Canceled") {
+            ticketIssuance.setIssueStatus("Canceled");
+        } else {
+            ticketIssuance.setIssueStatus("Issued");
+        }
+
         ticketIssuanceRepository.save(ticketIssuance);
 
         ObjectMapper objectMapper = new ObjectMapper();
