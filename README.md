@@ -1,7 +1,9 @@
 AWS
 
 AWS IAM User Access Key 생성
+
 IAM > 액세스 관리 > 사용자 > 보안 자격 증명
+
 액세스 키 만들기 > Access Key, Private Key 별도 보관
 
 AWS ECR 생성
