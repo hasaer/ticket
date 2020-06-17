@@ -72,24 +72,5 @@ kubectl expose deploy (NAME) --type=ClusterIP --port=8080
 
 ----
 
-cat <<EOF | kubectl apply -f -
-apiVersion: "v1"
-kind: "Pod"
-metadata: 
-  name: httpie
-  labels: 
-    name: httpie
-spec: 
-  containers: 
-    - 
-      name: httpie
-      image: clue/httpie
-      command:
-        - sleep
-        - "36000"
-EOF
+https://workflowy.com/s/msa/27a0ioMCzlpV04Ib#/5c459b8ad974
 
-#잠시후 다음을 실행:
-kubectl exec -it httpie bin/bash
-
-http get (POD-URL)
