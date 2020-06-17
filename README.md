@@ -68,6 +68,8 @@ kubectl create deploy (NAME) --image=271153858532.dkr.ecr.ap-northeast-2.amazona
 
 kubectl expose deploy (NAME) --type=ClusterIP --port=8080
 
+kubectl deploy -f deployment.yaml
+
 ----
 
 <b>Pod 테스트</b>
