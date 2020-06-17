@@ -76,3 +76,8 @@ kubectl expose deploy (NAME) --type=ClusterIP --port=8080
 
 https://workflowy.com/s/msa/27a0ioMCzlpV04Ib#/5c459b8ad974
 
+----
+
+<b>Cluster에 Kafka 설치</b>
+
+https://workflowy.com/s/msa/27a0ioMCzlpV04Ib#/d3169f4b644e
