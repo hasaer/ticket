@@ -16,7 +16,6 @@ public class PolicyHandler{
 
     @StreamListener(KafkaProcessor.INPUT)
     public void wheneverPayed_CreateIssue(@Payload Payed payed){
-
         if(payed.isMe()){
             System.out.println("##### listener CreateIssue : " + payed.toJson());
             TicketIssuance ticketIssuance = new TicketIssuance();
