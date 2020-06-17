@@ -36,6 +36,8 @@ aws eks --region ap-northeast-2 update-kubeconfig --name (Cluster-Name)
 
 mvn package -Dmaven.test.skip=true
 
+또는 IntelliJ에서 clean > package
+
 ----
 
 <b>도커라이징</b>
