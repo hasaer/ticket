@@ -70,7 +70,7 @@ kubectl expose deploy (NAME) --type=ClusterIP --port=8080
 
 kubectl create -f deployment.yaml
 kubectl replace -f deployment.yaml
-kubectl apply -f ~.yaml
+kubectl apply -f autoscaling.yaml
 
 ----
 
@@ -109,6 +109,5 @@ Autoscale
 liveness/readiness probe
 
 ci/cd pipeline
-
 
 
