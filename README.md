@@ -50,7 +50,7 @@ aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS
 
 <b>ECR 도커 이미지 푸시</b>
 
-docker push 271153858532.dkr.ecr.ap-northeast-2.amazonaws.com/(IMAGE_NAME):latest
+docker push 271153858532.dkr.ecr.ap-northeast-2.amazonaws.com/(ECR_NAME)/(IMAGE_NAME):latest
 
 ----
 
@@ -58,7 +58,7 @@ docker push 271153858532.dkr.ecr.ap-northeast-2.amazonaws.com/(IMAGE_NAME):lates
 
 디플로이 생성
 
-kubectl create deploy (NAME) --image=271153858532.dkr.ecr.ap-northeast-2.amazonaws.com/(IMAGE_NAME):v1
+kubectl create deploy (NAME) --image=271153858532.dkr.ecr.ap-northeast-2.amazonaws.com/(ECR_NAME)/(IMAGE_NAME):v1
 
 서비스 생성
 
