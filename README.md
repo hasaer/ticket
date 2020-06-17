@@ -66,4 +66,30 @@ kubectl create deploy (NAME) --image=271153858532.dkr.ecr.ap-northeast-2.amazona
 
 kubectl expose deploy (NAME) --type=ClusterIP --port=8080
 
+----
 
+<b>Pod 테스트</b>
+
+----
+
+cat <<EOF | kubectl apply -f -
+apiVersion: "v1"
+kind: "Pod"
+metadata: 
+  name: httpie
+  labels: 
+    name: httpie
+spec: 
+  containers: 
+    - 
+      name: httpie
+      image: clue/httpie
+      command:
+        - sleep
+        - "36000"
+EOF
+
+#잠시후 다음을 실행:
+kubectl exec -it httpie bin/bash
+
+http get (POD-URL)
