@@ -89,3 +89,18 @@ https://workflowy.com/s/msa/27a0ioMCzlpV04Ib#/d3169f4b644e
 <b>운영 :  서비스 매시 - Istio ~ Circuit Breaking, Retry</b>
 
 https://workflowy.com/s/msa/27a0ioMCzlpV04Ib#/377f767d80a6
+
+
+----
+<b>Todo</b>
+
+Autoscale
+
+부하테스트
+
+liveness/readiness probe
+
+ci/cd pipeline
+
+
+
