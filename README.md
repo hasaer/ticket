@@ -30,6 +30,8 @@ Default Region: ap-northeast-2
 
 aws eks --region ap-northeast-2 update-kubeconfig --name (Cluster-Name)
 
+----
+
 <b>Maven 빌드</b>
 
 mvn package -Dmaven.test.skip=true
@@ -58,7 +60,7 @@ docker push 271153858532.dkr.ecr.ap-northeast-2.amazonaws.com/(IMAGE_NAME):lates
 
 디플로이 생성
 
-kubectl create deploy (NAME) --image=271153858532.dkr.ecr.ap-northeast-2.amazonaws.com/(ECR_NAME)/(IMAGE_NAME):v1
+kubectl create deploy (NAME) --image=271153858532.dkr.ecr.ap-northeast-2.amazonaws.com/(IMAGE_NAME):v1
 
 서비스 생성
 
