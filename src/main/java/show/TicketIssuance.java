@@ -26,26 +26,14 @@ public class TicketIssuance {
     private Long id;
     private String issueStatus;
     private Long bookId;
-    private String eventType;
-
-    public String getEventType() {
-        return eventType;
-    }
-
-    public void setEventType(String eventType) {
-        this.eventType = eventType;
-    }
-
-    public TicketIssuance() {
-        super();
-        this.eventType = this.getClass().getSimpleName();
-    }
-
-    @Autowired
-    TicketIssuanceRepository ticketIssuanceRepository;
 
     @PostPersist
     public void onPostPersist() {
+        IssueStatusChanged issueStatusChanged = new IssueStatusChanged();
+        issueStatusChanged.setId(this.getId());
+        issueStatusChanged.setBookId(this.getBookId());
+        issueStatusChanged.setIssueStatus(this.getIssueStatus());
+
         ObjectMapper objectMapper = new ObjectMapper();
         String json = null;
 
@@ -66,21 +54,16 @@ public class TicketIssuance {
 
     @PostUpdate
     public void onPostUpdate() {
-        TicketIssuance ticketIssuance = ticketIssuanceRepository.findByBookId(this.getBookId());
-
-        if (eventType == "Canceled") {
-            ticketIssuance.setIssueStatus("Canceled");
-        } else {
-            ticketIssuance.setIssueStatus("Issued");
-        }
-
-        ticketIssuanceRepository.save(ticketIssuance);
+        IssueStatusChanged issueStatusChanged = new IssueStatusChanged();
+        issueStatusChanged.setId(this.getId());
+        issueStatusChanged.setBookId(this.getBookId());
+        issueStatusChanged.setIssueStatus(this.getIssueStatus());
 
         ObjectMapper objectMapper = new ObjectMapper();
         String json = null;
 
         try {
-            json = objectMapper.writeValueAsString(ticketIssuance);
+            json = objectMapper.writeValueAsString(issueStatusChanged);
         } catch (JsonProcessingException e) {
             throw new RuntimeException("JSON format exception", e);
         }

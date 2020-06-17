@@ -2,6 +2,7 @@ show\Payed.class
 show\PolicyHandler.class
 show\Application.class
 show\config\kafka\KafkaProcessor.class
+show\Canceled.class
 show\AbstractEvent.class
 show\IssueStatusChanged.class
 show\TicketIssuanceController.class
