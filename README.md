@@ -30,6 +30,10 @@ Default Region: ap-northeast-2
 
 aws eks --region ap-northeast-2 update-kubeconfig --name (Cluster-Name)
 
+<b>Maven 빌드</b>
+
+mvn package -Dmaven.test.skip=true
+
 ----
 
 <b>도커라이징</b>
